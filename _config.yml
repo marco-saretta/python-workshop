@@ -1,2 +1,12 @@
-title: Python workshop
-theme: just-the-docs
+title: "Python workshop - Good practices"
+description: "A short description"
+remote_theme: just-the-docs/just-the-docs
+url: "https://marco-saretta.github.io/python-workshop/"
+
+# Optional but recommended
+color_scheme: light
+search_enabled: true
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag

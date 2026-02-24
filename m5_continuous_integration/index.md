@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Continuous integration
-nav_order: 2
+title: Continuous Integration
+nav_order: 6
 has_children: true
 ---
 

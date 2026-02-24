@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Continuous Integration
-nav_order: 6
+title: Reproducibility
+nav_order: 5
 has_children: true
 ---
 

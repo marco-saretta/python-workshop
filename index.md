@@ -27,7 +27,11 @@ By the end of this workshop you will:
 - Implement CI pipelines
 
 ## Clone the repo
+To get strated doing our things, we first have to copy the folder and some code. Let's start by cloning the repo:
 
 ```bash
 git clone https://github.com/marco-saretta/python-workshop.git
 ```
+
+## Acknowledgmeents
+

@@ -5,7 +5,7 @@ nav_order: 4
 has_children: true
 ---
 
-# Module 3 — Run and Debug
+# Module 3 - Run and Debug
 
 - [Run in VS Code with uv](run-vscode-uv)
 - [Run in Terminal](run-terminal)

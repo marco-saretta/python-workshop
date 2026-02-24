@@ -5,7 +5,7 @@ nav_order: 3
 has_children: true
 ---
 
-# Module 2 — Python Templates
+# Module 2 - Python Templates
 
 ## Topics
 

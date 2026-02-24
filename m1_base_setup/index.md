@@ -5,7 +5,7 @@ nav_order: 2
 has_children: true
 ---
 
-# Module 1 — Base Setup
+# Module 1 - Base Setup
 
 This module covers foundational tooling.
 

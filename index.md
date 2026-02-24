@@ -27,3 +27,9 @@ By the end of this workshop you will:
 - Debug efficiently in VS Code
 - Ensure reproducibility
 - Implement CI pipelines
+
+## Clone the repo
+
+```bash
+git clone https://github.com/marco-saretta/python-workshop.git
+```

@@ -41,11 +41,6 @@ The [Just the Docs Template] provides the simplest, quickest, and easiest way to
 {: .note }
 To use the theme, you do ***not*** need to clone or fork the [Just the Docs repo]! You should do that only if you intend to browse the theme docs locally, contribute to the development of the theme, or develop a new theme based on Just the Docs.
 
-{: .warning }
-> This website documents the features of the current `main` branch of the Just the Docs theme. See [the CHANGELOG]({% link CHANGELOG.md %}) for a list of releases, new features, and bug fixes.
-
-
-
 ---
 
 {: .warning }

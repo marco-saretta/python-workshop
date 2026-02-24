@@ -5,9 +5,10 @@ nav_order: 2
 has_children: true
 ---
 
-# Module 1 - Base Setup
+# Module 1 – Base Setup
 
-This module covers foundational tooling.
+This module establishes the foundational tooling required for professional Python development.
+
 
 ## Topics
 
@@ -19,7 +20,6 @@ This module covers foundational tooling.
 
 ---
 
-⬅ Back to [Home](../)
-➡ Next: [Python Templates](../02-python-templates/)
 
-[Return home](../index.md)
+**Back:** [Home](../)  
+**Next:** [Python Templates](../m2_python_templates/)

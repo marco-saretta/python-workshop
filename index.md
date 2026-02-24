@@ -26,12 +26,21 @@ By the end of this workshop you will:
 - Ensure reproducibility
 - Implement CI pipelines
 
-## Clone the repo
-To get strated doing our things, we first have to copy the folder and some code. Let's start by cloning the repo:
+## Get Started
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/marco-saretta/python-workshop.git
+cd python-workshop
 ```
 
-## Acknowledgmeents
+## Acknowledgements
 
+This workshop is inspired by the course material developed by **Nicki Skafte Detlefsen** in the *Machine Learning Operations* course (2024).
+
+The original repository can be found here:  
+https://github.com/SkafteNicki/dtu_mlops
+
+Parts of the structure, exercises, and pedagogical ideas build upon that work.  
+The original material is released under the Apache 2.0 License.

@@ -21,3 +21,5 @@ This module covers foundational tooling.
 
 ⬅ Back to [Home](../)
 ➡ Next: [Python Templates](../02-python-templates/)
+
+[Return home](../index.md)

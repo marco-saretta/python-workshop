@@ -1,6 +1,6 @@
 ---
-layout: home
-title: Python Workshop
+layout: default
+title: Home
 nav_order: 1
 ---
 

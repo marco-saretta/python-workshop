@@ -12,5 +12,3 @@ plugins:
   - jekyll-seo-tag
 
 heading_anchors: true
-
-color_scheme: custom

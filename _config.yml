@@ -10,3 +10,16 @@ search_enabled: true
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
+
+callouts:
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+  important:
+    title: Important
+    color: blue
+  highlight:
+    color: yellow

@@ -2,7 +2,7 @@
 layout: default
 title: Base Setup
 has_children: true
-nav_order: 1
+nav_order: 2
 ---
 
 # Module 1 – Base Setup

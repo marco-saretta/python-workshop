@@ -2,7 +2,7 @@
 layout: default
 title: Typer
 parent: Base Setup
-nav_order: 1
+nav_order: 4
 ---
 
 # Typer

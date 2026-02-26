@@ -2,7 +2,7 @@ title: "Python workshop - Good practices"
 description: "A short description"
 remote_theme: just-the-docs/just-the-docs
 url: "https://marco-saretta.github.io/python-workshop/"
-markdown: kramdown        # <-- add this line
+markdown: kramdown       
 color_scheme: nil
 search_enabled: true
 
@@ -25,4 +25,3 @@ callouts:
   warning:
     title: Warning
     color: red
-    

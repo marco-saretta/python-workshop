@@ -1,0 +1,23 @@
+// Callout backgrounds for light scheme
+.note {
+  background-color: $purple-000 !important;
+}
+
+.warning {
+  background-color: $red-000 !important;
+}
+
+.important {
+  background-color: $blue-000 !important;
+}
+
+.new {
+  background-color: $green-000 !important;
+}
+
+// Code block background
+div.highlighter-rouge,
+figure.highlight {
+  background-color: #f6f8fa !important;
+  border-radius: 4px;
+}

@@ -9,8 +9,9 @@ nav_order: 2
 
 This module establishes the foundational tooling required for professional Python development.
 
-{: .warning }
-> This website documents the features of the current `main` branch of the Just the Docs theme. See [the CHANGELOG]({% link CHANGELOG.md %}) for a list of releases, new features, and bug fixes.
+{: .note }
+This is a note. It will render with a purple border and background.
+
 
 ## Topics
 

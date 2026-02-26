@@ -24,23 +24,20 @@ Git is the tool we use to manage version control. For a deeper explanation, see 
   - [Repositories: Local and Remote](#repositories-local-and-remote)
   - [Forks and Upstream](#forks-and-upstream)
   - [The Three Stages of Git](#the-three-stages-of-git)
-- [Getting Code](#getting-code)
+- [Git Main Commands](#git-main-commands)
   - [clone](#clone)
   - [fetch](#fetch)
   - [pull](#pull)
-- [Making Changes](#making-changes)
   - [status](#status)
   - [add](#add)
   - [stash and stash pop](#stash-and-stash-pop)
   - [commit](#commit)
-- [Sharing Changes](#sharing-changes)
   - [push](#push)
   - [merge](#merge)
-- [Navigating History](#navigating-history)
   - [checkout](#checkout)
 - [Exercise](#exercise)
 
----
+
 
 ## Git vs GitHub
 
@@ -51,7 +48,7 @@ It is important to understand the difference:
 
 In this course, we use Git locally (in the terminal) and GitHub to store and share code. You are expected to create a public GitHub repository and use Git to upload your work.
 
----
+
 
 ## Core Concepts
 
@@ -59,7 +56,8 @@ In this course, we use Git locally (in the terminal) and GitHub to store and sha
 
 Git tracks changes to files inside a project folder. Specifically, it tracks new files, modified files, deleted files, and the full history of all changes.
 
-> **Important:** Git does NOT automatically track everything. Files must be explicitly added first.
+{: .important }
+Git does NOT automatically track everything. Files must be explicitly added to Git before it starts watching them.
 
 ### Repositories: Local and Remote
 
@@ -77,7 +75,7 @@ git remote -v
 # origin  https://github.com/marco-saretta/python-workshop.git (push)
 ```
 
-You can have multiple remotes. `origin` is just the conventional name for the primary one. When running commands like `git push` or `git pull`, Git defaults to `origin`, so in day-to-day work you often do not need to type it explicitly. For example, `git push` and `git push origin main` usually do the same thing once your branch is set up. The full form is useful to know when you have multiple remotes or want to be explicit.
+You can have multiple remotes. `origin` is just the conventional name for the primary one.
 
 ### Forks and Upstream
 
@@ -119,9 +117,11 @@ Working Directory  ->  Staging Area (Index)  ->  Commit (History)
 
 This separation gives you control: you can edit many files but only commit a specific subset of them.
 
----
+![git_meme](figures/git.png)
 
-## Getting Code
+## Git Main Commands
+
+This section walks through the core Git commands in the order you would use them in a typical workflow: get the code, make changes, then share them.
 
 ### Clone
 
@@ -134,8 +134,6 @@ This separation gives you control: you can edit many files but only commit a spe
 
 HTTPS is simpler to start with. SSH is preferred for regular work because it does not require entering credentials each time.
 
-**Example: clone the workshop repository with HTTPS**
-
 Open a terminal (Git Bash on Windows, or any terminal on Mac/Linux) and run:
 
 ```bash
@@ -143,7 +141,7 @@ git clone https://github.com/marco-saretta/python-workshop.git
 cd python-workshop
 ```
 
-After cloning, `cd python-workshop` moves you into the new local folder. You now have a complete local copy of the repository, and Git has automatically set `origin` to point to the GitHub URL.
+After cloning, `cd python-workshop` moves you into the new local folder. Git has automatically set `origin` to point to the GitHub URL.
 
 ### Fetch
 
@@ -163,19 +161,15 @@ Think of it as checking what is new on the remote without changing anything yet.
 git pull
 ```
 
-Git defaults to `origin` so you can usually just run `git pull` without specifying the remote and branch. The full form `git pull origin main` is useful when you want to be explicit about which remote and branch to pull from.
+{: .note }
+Git defaults to `origin` so you can usually just run `git pull` without specifying anything else. The full form `git pull origin main` is useful when you want to be explicit about which remote and branch to pull from.
 
-**When to use `fetch` vs `pull`:** use `fetch` when you want to inspect changes before integrating them. Use `pull` when you are confident you want to apply the latest changes right away.
-
-> **Warning:** If you have local uncommitted changes that conflict with incoming changes, `git pull` may fail. Use `git stash` first (see the [stash](#stash-and-stash-pop) section below).
-
----
-
-## Making Changes
+{: .warning }
+If you have local uncommitted changes that conflict with incoming changes, `git pull` may fail. Use `git stash` first — see the [stash](#stash-and-stash-pop) section below.
 
 ### Status
 
-`git status` is your most important command for understanding what is happening in your repository. It shows which files have been **modified** but not staged, which files are **staged** and ready to commit, and which files are **untracked** (Git does not know about them yet).
+`git status` is your most important command for understanding what is happening in your repository at any given moment. It shows which files have been **modified** but not staged, which are **staged** and ready to commit, and which are **untracked**.
 
 ```bash
 git status
@@ -192,7 +186,8 @@ Untracked files:
   new_script.py
 ```
 
-Run `git status` frequently, before and after every other command, to stay oriented.
+{: .note }
+Run `git status` frequently — before and after every other command — to stay oriented. It is impossible to run it too often.
 
 ### Add
 
@@ -209,11 +204,12 @@ git add app.py utils.py
 git add .
 ```
 
-> **Tip:** Prefer staging specific files rather than `git add .` as it forces you to review what you are actually committing.
+{: .highlight }
+Prefer staging specific files rather than `git add .` — it forces you to review exactly what you are about to commit.
 
 ### Stash and Stash Pop
 
-`git stash` temporarily shelves your uncommitted changes so you can switch context (e.g., pull updates or switch branches) without losing work or committing unfinished code.
+`git stash` temporarily shelves your uncommitted changes so you can switch context without losing work or committing unfinished code.
 
 ```bash
 # Save current changes to the stash
@@ -222,7 +218,7 @@ git stash
 # Your working directory is now clean
 git status  # nothing to commit
 
-# ... do other work (e.g., git pull, git checkout another-branch) ...
+# ... do other work, e.g. git pull or git checkout another-branch ...
 
 # Restore your stashed changes
 git stash pop
@@ -263,9 +259,10 @@ git commit -m "changes"
 git commit -m "asdfgh"
 ```
 
-> **Note:** A commit only includes what you have staged with `git add`. Unstaged changes remain in your working directory and will not be included.
+{: .important }
+A commit only includes what you have staged with `git add`. Unstaged changes remain in your working directory and will not be included.
 
-**Full example: the typical edit, stage, commit cycle**
+**The full edit, stage, commit cycle:**
 
 ```bash
 # 1. Make changes to app.py in your editor
@@ -283,10 +280,6 @@ git status
 git commit -m "Add login validation"
 ```
 
----
-
-## Sharing Changes
-
 ### Push
 
 `git push` uploads your local commits to a remote repository, making them available to others.
@@ -295,26 +288,28 @@ git commit -m "Add login validation"
 git push
 ```
 
-As with `git pull`, Git defaults to `origin` so you can usually just run `git push`. The full form is also common and makes it explicit which remote and branch you are targeting:
+{: .note }
+As with `git pull`, Git defaults to `origin` so you can usually just run `git push`. The full form makes it explicit which remote and branch you are targeting:
 
 ```bash
 git push origin main
 
-# Or, if you are on a feature branch:
+# Or for a feature branch:
 git push origin my-feature-branch
 ```
 
-> **Tip:** Before pushing, it is good practice to run `git pull` first to make sure your local branch is up to date with the remote. This reduces the chance of conflicts.
+{: .highlight }
+Before pushing, it is good practice to run `git pull` first to make sure your local branch is up to date. This reduces the chance of conflicts.
 
 ### Merge
 
-`git merge` integrates changes from one branch into another. The most common use case is merging a feature branch back into `main` once work is complete.
+`git merge` integrates changes from one branch into another. The most common use case is merging a feature branch back into `main` once the work is complete.
 
 ```bash
 # Switch to the branch you want to merge INTO
 git checkout main
 
-# Merge the feature branch into main
+# Merge the feature branch
 git merge my-feature-branch
 ```
 
@@ -326,28 +321,19 @@ git add conflicted-file.py
 git commit -m "Resolve merge conflict in conflicted-file.py"
 ```
 
----
-
-## Navigating History
-
 ### Checkout
 
 `git checkout` is used to switch between branches or restore files to a previous state.
 
-**Switch to an existing branch:**
-
 ```bash
+# Switch to an existing branch
 git checkout main
-git checkout my-feature-branch
-```
 
-**Create and switch to a new branch in one step:**
-
-```bash
+# Create and switch to a new branch in one step
 git checkout -b new-feature
 ```
 
-This is the most common way to start new work: branch off from `main`, make your changes, then merge back when done.
+Creating a new branch with `-b` is the most common way to start new work: branch off from `main`, make your changes, then merge back when done.
 
 **Restore a single file to its last committed state (discard local changes):**
 
@@ -355,15 +341,17 @@ This is the most common way to start new work: branch off from `main`, make your
 git checkout -- app.py
 ```
 
-> **Warning:** `git checkout -- <file>` permanently discards your unsaved changes to that file. There is no undo.
+{: .warning }
+`git checkout -- <file>` permanently discards your unsaved changes to that file. There is no undo.
 
-> **Note:** In newer versions of Git, `git switch` is the preferred command for switching branches, and `git restore` for discarding file changes. `git checkout` still works and remains widely used.
+{: .note }
+In newer versions of Git, `git switch` is the preferred command for switching branches, and `git restore` for discarding file changes. `git checkout` still works and remains widely used.
 
----
+
 
 ## Exercise
 
-In this exercise you will go through the full Git workflow hands-on, and encounter a realistic scenario at the end.
+In this exercise you will go through the full Git workflow hands-on and encounter a realistic permission error at the end.
 
 **Step 1: Clone the workshop repository**
 
@@ -380,11 +368,9 @@ Verify that Git has set up `origin` correctly:
 git remote -v
 ```
 
-You should see two lines showing the URL of the repository, one for fetch and one for push.
+You should see two lines showing the repository URL, one for fetch and one for push.
 
 **Step 3: Create a new branch and switch to it**
-
-Pick a branch name that is yours, for example using your name:
 
 ```bash
 git checkout -b yourname-test-branch
@@ -399,47 +385,37 @@ git status
 
 **Step 4: Make a change and commit it**
 
-Create a small text file or edit an existing one. For example:
-
 ```bash
 echo "Hello from yourname" > yourname_notes.txt
-```
-
-Then stage and commit it:
-
-```bash
 git add yourname_notes.txt
 git commit -m "Add notes file for yourname"
 ```
 
 **Step 5: Try to push**
 
-Now try to push your branch to the remote:
-
 ```bash
 git push origin yourname-test-branch
 ```
 
-You will see an error along these lines:
+You will see an error like this:
 
 ```
 remote: Permission to marco-saretta/python-workshop.git denied to yourname.
-fatal: unable to access 'https://github.com/marco-saretta/python-workshop.git/': The requested URL returned error: 403
+fatal: unable to access '...': The requested URL returned error: 403
 ```
 
-This is expected. The repository is owned by someone else and you do not have write access to it. This is exactly why **forks** exist: if you wanted to contribute changes, you would fork the repository to your own GitHub account first, clone your fork, and push there instead. You would then open a **pull request** to propose your changes to the original repository.
+{: .important }
+This is expected and is not a mistake on your part. The repository is owned by someone else and you do not have write access. This is exactly why **forks** exist: you would fork the repository to your own account, clone your fork, push there, and then open a **pull request** to propose your changes back to the original.
 
-This error is not a mistake on your part. It is Git correctly telling you that you are not authorised to write to that repository.
 
----
 
 **Setting up your own repository**
 
-For the rest of the course, you will need a repository that you own so that you can push freely. Here is how to set that up.
+For the rest of the course you will need a repository you own so you can push freely.
 
-Go to [github.com](https://github.com), log in, click the "+" button in the top right, and select "New repository". Give it a name (e.g., `python-workshop`), set it to public, and click "Create repository". GitHub will show you a URL for the new repository.
+Go to [github.com](https://github.com), log in, click "+" in the top right, and select "New repository". Give it a name, set it to public, and click "Create repository".
 
-You now have two options depending on whether you are starting fresh or want to connect an existing local folder.
+You have two options depending on your situation.
 
 **Option A: Start fresh by cloning your new empty repo**
 
@@ -448,21 +424,16 @@ git clone https://github.com/your-username/python-workshop.git
 cd python-workshop
 ```
 
-From here, any files you create, stage, and commit can be pushed with `git push`.
-
 **Option B: Connect an existing local folder to your new repo**
-
-If you already have a local folder with work in it, you can point it at your new GitHub repository:
 
 ```bash
 cd your-existing-folder
-git init                          # only needed if Git is not already set up here
+git init
 git remote add origin https://github.com/your-username/python-workshop.git
 git add .
 git commit -m "Initial commit"
 git push -u origin main
 ```
 
-The `-u` flag on the first push sets `origin main` as the default tracking branch, so from that point on you can just run `git push` and `git pull` without extra arguments.
-
-Once this is done, you have full write access and the permission error from the exercise will not appear.
+{: .note }
+The `-u` flag on the first push sets `origin main` as the default tracking branch. From that point on you can just run `git push` and `git pull` without any extra arguments.

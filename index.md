@@ -10,6 +10,7 @@ Welcome to the Python Workshop
 
 {: .warning }
 This is a single paragraph warning. No blockquote needed.
+One more paragraph
 
 {: .note }
 This is a single paragraph warning. No blockquote needed.

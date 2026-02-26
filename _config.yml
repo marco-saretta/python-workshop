@@ -2,20 +2,14 @@ title: "Python workshop - Good practices"
 description: "A short description"
 remote_theme: just-the-docs/just-the-docs
 url: "https://marco-saretta.github.io/python-workshop/"
-
-# Optional but recommended
-color_scheme: light
+markdown: kramdown        # <-- add this line
+color_scheme: nil
 search_enabled: true
 
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
-# Color scheme currently only supports "dark", "light"/nil (default), or a custom scheme that you define
-color_scheme: nil
-
-# When commented out, callouts_level defaults to quiet for the light scheme, and loud for dark
-# callouts_level: quiet # or loud
 callouts:
   highlight:
     color: yellow

@@ -8,6 +8,21 @@ nav_order: 1
 
 Welcome to the Python Workshop
 
+{: .warning }
+This is a single paragraph warning. No blockquote needed.
+
+{: .note }
+This is a single paragraph warning. No blockquote needed.
+
+{: .highlight }
+This is a single paragraph warning. No blockquote needed.
+
+{: .important }
+This is a single paragraph warning. No blockquote needed.
+
+{: .new }
+This is a single paragraph warning. No blockquote needed.
+
 This workshop is divided into 5 modules:
 
 1. [Base Setup](m1_base_setup/index.md)

@@ -150,7 +150,7 @@ Ruff will report these issues but will not touch them, because fixing them would
 
 **Docstrings.** Ruff can flag missing docstrings if you configure it to, but it cannot write them for you.
 
-In short: Ruff handles the mechanical, objective stuff. The meaningful naming, the clear structure, the readable logic — that is still on you.
+In short: Ruff handles the mechanical, objective stuff. The meaningful naming, the clear structure, the readable logic - that is still on you.
 
 
 ## Linting Score

@@ -5,7 +5,6 @@ requires-python = ">=3.12"
 dependencies = [
     "gurobipy>=13.0.1",
     "ipykernel>=7.2.0",
-    "numpy>=2.4.2",
     "pandas>=3.0.1",
     "pytest>=9.0.2",
     "requests>=2.32.5",

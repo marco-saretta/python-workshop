@@ -55,7 +55,7 @@ In this workshop, use Git locally and GitHub for public repos.
 ## Core Concepts
 
 ### What Git Tracks
-Git monitors new, modified, deleted files, and full history—but only after explicit `add`. It ignores unstaged changes.
+Git monitors new, modified, deleted files, and full history-but only after explicit `add`. It ignores unstaged changes.
 
 ### Repositories
 A repo is a tracked project folder with a hidden `.git` directory for history.
@@ -145,7 +145,7 @@ git pull
 Git defaults to `origin` so you can usually just run `git pull` without specifying anything else. The full form `git pull origin main` is useful when you want to be explicit about which remote and branch to pull from.
 
 {: .warning }
-If you have local uncommitted changes that conflict with incoming changes, `git pull` may fail. Use `git stash` first — see the [stash](#stash-and-stash-pop) section below.
+If you have local uncommitted changes that conflict with incoming changes, `git pull` may fail. Use `git stash` first - see the [stash](#stash-and-stash-pop) section below.
 
 ### Status
 
@@ -167,7 +167,7 @@ Untracked files:
 ```
 
 {: .note }
-Run `git status` frequently — before and after every other command — to stay oriented. It is impossible to run it too often.
+Run `git status` frequently - before and after every other command - to stay oriented. It is impossible to run it too often.
 
 ### Add
 
@@ -185,7 +185,7 @@ git add .
 ```
 
 {: .highlight }
-Prefer staging specific files rather than `git add .` — it forces you to review exactly what you are about to commit.
+Prefer staging specific files rather than `git add .` - it forces you to review exactly what you are about to commit.
 
 ### Stash and Stash Pop
 

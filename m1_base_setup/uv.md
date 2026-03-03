@@ -36,7 +36,7 @@ uv is written in Rust, which makes it substantially faster than older tools like
 ![uv_meme](figures/uv_meme.png)
 ## uv vs Conda
 
-You may have used **Conda** (or its smaller variant, Miniconda) before. Both tools solve the same problem — isolated environments with specific dependencies — but they take a different approach.
+You may have used **Conda** (or its smaller variant, Miniconda) before. Both tools solve the same problem - isolated environments with specific dependencies - but they take a different approach.
 
 | Feature | uv | Conda |
 |---------|----|-------|
@@ -70,43 +70,6 @@ Because `.venv` is just a folder inside your project, you always know exactly wh
 
 {: .note }
  `.venv` should be added to your `.gitignore`. You never commit the environment itself to Git, only the `pyproject.toml` that describes it. Anyone who clones your repo can recreate the exact environment by running `uv sync`.
-
-### Activating a virtual environment
-
-Before you can use the environment in your terminal, you need to activate it. Activation updates your shell so that `python` points to `.venv/bin/python` instead of the system Python.
-
-**On Mac and Linux:**
-
-```bash
-source .venv/bin/activate
-```
-
-**On Windows (Git Bash):**
-
-```bash
-source .venv/Scripts/activate
-```
-
-**On Windows (Command Prompt):**
-
-```bash
-.venv\Scripts\activate.bat
-```
-
-Once activated, your terminal prompt changes to show the environment name:
-
-```bash
-(my-project) $
-```
-
-To deactivate and return to the system Python:
-
-```bash
-deactivate
-```
-
-{: .note }
-Most code editors including VS Code detect `.venv` automatically and activate it for you in the integrated terminal. You may not need to activate manually when working inside the editor.
 
 ## Core uv Commands
 
@@ -156,6 +119,8 @@ After running `uv add`, two things happen: the package is installed into `.venv`
 
 ### uv sync
 
+This is your swiss-army knife. 
+
 `uv sync` reads `pyproject.toml` and installs all the listed dependencies into `.venv`. It is the command you run after cloning a project to get the environment set up.
 
 ```bash
@@ -165,8 +130,6 @@ uv sync
 If `.venv` does not exist yet, uv creates it. If packages are already installed but out of date with `pyproject.toml`, uv updates them. If a package is installed but no longer listed in `pyproject.toml`, uv removes it.
 
 This makes `uv sync` the single source of truth: what is in `pyproject.toml` is exactly what ends up in `.venv`.
-
-
 
 ## The pyproject.toml File
 
@@ -216,44 +179,44 @@ This keeps all project configuration in a single file rather than scattered acro
 {: .note }
 [More about uv vs pixi](https://jacobtomlinson.dev/posts/2025/python-package-managers-uv-vs-pixi/)
 
+
 ## Exercise
 
-In this exercise you will create a new project with uv, add a dependency, write a small script, and run it inside the virtual environment.
-
-**Step 1: Install uv**
+Navigate to your workshop directory first:
 
 ```bash
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+cd python-workshop
 ```
 
-Verify it is installed:
+### Step 1: Install uv (PowerShell)**
 
-```bash
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 uv --version
 ```
 
-**Step 2: Create a new project**
+### Step 2: Run the test script (fails)**
 
 ```bash
-uv init workshop-project
-cd workshop-project
+uv run m1_base_setup/exercise_files/uv_test.py
 ```
+**Expected error:** `ModuleNotFoundError: No module named 'numpy'`
 
-Look at what was created:
+### Step 3: Check current state
 
 ```bash
-ls -la
+uv pip list
 ```
 
-Open `pyproject.toml` and read through it. Notice the `dependencies` field is currently empty.
+Shows empty or missing numpy.
 
-**Step 3: Add a dependency**
+### Step 4: Add numpy
 
 ```bash
-uv add requests
+uv add numpy
 ```
 
-Open `pyproject.toml` again. Notice that `requests` has been added to the `dependencies` list automatically.
+Open `pyproject.toml` again. Notice that `numpy` has been added to the `dependencies` list automatically.
 
 Now look inside `.venv`:
 
@@ -261,70 +224,34 @@ Now look inside `.venv`:
 ls .venv/lib/
 ```
 
-You can see that packages have been installed there, not somewhere in a global Miniconda directory.
-
-**Step 4: Activate the environment**
-
-On Mac/Linux:
-
-```bash
-source .venv/bin/activate
-```
-
-On Windows (Git Bash):
-
-```bash
-source .venv/Scripts/activate
-```
-
-Your prompt should now show the environment name. Verify which Python is being used:
-
-```bash
-which python
-# should point to .venv/bin/python, not /usr/bin/python or similar
-```
-
-**Step 5: Write and run a small script**
-
-Create a file called `main.py` in the project folder:
-
-```python
-import requests
-
-response = requests.get("https://httpbin.org/get")
-print("Status code:", response.status_code)
-print("Your IP:", response.json()["origin"])
-```
-
-Run it:
-
-```bash
-python main.py
-```
-
-**Step 6: Simulate a fresh clone**
-
-This step shows why `uv sync` matters. Delete the `.venv` folder to simulate what it would be like if a colleague cloned your repo:
-
-```bash
-deactivate
-rm -rf .venv
-```
-
-Now recreate the environment from `pyproject.toml` alone:
+### Step 5: Sync & verify
 
 ```bash
 uv sync
-source .venv/bin/activate
-python main.py
+uv pip list
 ```
 
-Everything works again, from a single file. This is the core workflow you will use on every project.
+Now numpy now installed in `.venv`.
 
-**What you practiced:**
+### Step 6: Test success
 
-- Creating a project with `uv init`
-- Adding a dependency with `uv add` and seeing `pyproject.toml` update
-- Locating the `.venv` folder inside the project
-- Activating and deactivating the environment
-- Recreating the environment from scratch with `uv sync`
+```bash
+uv run m1_base_setup/exercise_files/uv_test.py
+```
+
+Script runs! No activation needed.
+
+### Step 7: Fresh clone simulation
+
+```bash
+rm -rf .venv  # Simulate git clone
+uv sync       # Rebuilds from pyproject.toml
+uv run m1_base_setup/exercise_files/uv_test.py  # Works perfectly
+```
+
+### Key takeaways
+
+- `uv add` → installs + updates `pyproject.toml`
+- `uv sync` → exact reproduction from `pyproject.toml`
+- `uv run` → runs scripts in project env (no activation)
+- **Commit only** `pyproject.toml` to Git

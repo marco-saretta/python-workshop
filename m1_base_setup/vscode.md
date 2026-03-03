@@ -82,20 +82,20 @@ Install extensions by opening the Extensions panel (`Ctrl+Shift+X`) and searchin
 
 **Python and code quality**
 
-- **Python** (by Microsoft) — Required. Provides Python language support, the interpreter selector, debugging, and the test runner.
-- **Pylance** (by Microsoft) — Highly recommended. Adds fast, intelligent autocompletion and type checking powered by Pyright.
-- **Ruff** (by Astral Software) — Runs Ruff as you type and highlights issues inline. Pairs with the Ruff linter you installed earlier.
+- **Python** (by Microsoft) - Required. Provides Python language support, the interpreter selector, debugging, and the test runner.
+- **Pylance** (by Microsoft) - Highly recommended. Adds fast, intelligent autocompletion and type checking powered by Pyright.
+- **Ruff** (by Astral Software) - Runs Ruff as you type and highlights issues inline. Pairs with the Ruff linter you installed earlier.
 
 **Appearance**
 
-- **One Dark Pro** — A dark theme based on the Atom editor's default theme. Clean and easy on the eyes for long sessions. After installing, apply it via `Ctrl+Shift+P` > `Color Theme`.
-- **Material Icon Theme** — Replaces the default file icons with clear, colour-coded icons based on file type. Makes the Explorer sidebar much easier to scan.
+- **One Dark Pro** - A dark theme based on the Atom editor's default theme. Clean and easy on the eyes for long sessions. After installing, apply it via `Ctrl+Shift+P` > `Color Theme`.
+- **Material Icon Theme** - Replaces the default file icons with clear, colour-coded icons based on file type. Makes the Explorer sidebar much easier to scan.
 
 **Productivity**
 
-- **GitLens** — Enhances the built-in Git support. Shows who last changed each line of code inline, provides a detailed history view, and makes blame and diff workflows much easier.
-- **indent-rainbow** — Colours each indentation level differently. Particularly helpful in Python where indentation is structural.
-- **autoDocstring** — Generates a docstring template when you type `"""` inside a function. Saves time and encourages good documentation habits.
+- **GitLens** - Enhances the built-in Git support. Shows who last changed each line of code inline, provides a detailed history view, and makes blame and diff workflows much easier.
+- **indent-rainbow** - Colours each indentation level differently. Particularly helpful in Python where indentation is structural.
+- **autoDocstring** - Generates a docstring template when you type `"""` inside a function. Saves time and encourages good documentation habits.
 
 ---
 

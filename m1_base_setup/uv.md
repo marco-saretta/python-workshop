@@ -200,6 +200,7 @@ uv --version
 ```bash
 uv run m1_base_setup/exercise_files/uv_test.py
 ```
+
 **Expected error:** `ModuleNotFoundError: No module named 'numpy'`
 
 ### Step 3: Check current state
@@ -224,16 +225,9 @@ Now look inside `.venv`:
 ls .venv/lib/
 ```
 
-### Step 5: Sync & verify
-
-```bash
-uv sync
-uv pip list
-```
-
 Now numpy now installed in `.venv`.
 
-### Step 6: Test success
+### Step 5: Test success
 
 ```bash
 uv run m1_base_setup/exercise_files/uv_test.py
@@ -241,7 +235,7 @@ uv run m1_base_setup/exercise_files/uv_test.py
 
 Script runs! No activation needed.
 
-### Step 7: Fresh clone simulation
+### Step 6: Fresh clone simulation
 
 ```bash
 rm -rf .venv  # Simulate git clone

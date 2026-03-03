@@ -5,10 +5,6 @@ parent: Base Setup
 nav_order: 2
 ---
 
-# Package Management with uv
-
-Every Python project needs a way to manage its dependencies: the external libraries your code relies on. This section introduces **uv**, the tool we use in this course, explains the concept of virtual environments, and briefly covers alternatives like Conda and Pixi.
-
 ## Table of Contents
 
 - [The Problem uv Solves](#the-problem-uv-solves)
@@ -24,6 +20,10 @@ Every Python project needs a way to manage its dependencies: the external librar
 - [Exercise](#exercise)
 
 
+# Package Management with uv
+
+Every Python project needs a way to manage its dependencies: the external libraries your code relies on. This section introduces **uv**, the tool we use in this course, explains the concept of virtual environments, and briefly covers alternatives like Conda and Pixi.
+
 
 ## The Problem uv Solves
 
@@ -33,30 +33,20 @@ The standard solution is to give each project its own isolated Python environmen
 
 uv is written in Rust, which makes it substantially faster than older tools like pip or conda for installing packages.
 
-
-
+![uv_meme](figures/uv_meme.png)
 ## uv vs Conda
 
 You may have used **Conda** (or its smaller variant, Miniconda) before. Both tools solve the same problem — isolated environments with specific dependencies — but they take a different approach.
 
-| | uv | Conda |
-|---|---|---|
-| Language focus | Python only | Python, R, C libs, and more |
-| Speed | Very fast | Slower |
-| Environment location | Inside your project folder (`.venv`) | Centralised in `~/miniconda3/envs/` |
-| Dependency file | `pyproject.toml` | `environment.yml` |
-| Package source | PyPI | Conda channels (conda-forge, etc.) |
-| Best for | Python projects, web, data pipelines | Scientific computing, mixed-language stacks |
+| Feature | uv | Conda |
+|---------|----|-------|
+| Focus | Python-only | Multi-language |
+| Speed | Extremely fast | Slower |
+| Env location | `.venv/` (project-local) | `~/miniconda3/envs/` |
+| Config | `pyproject.toml` | `environment.yml` |
+| Best for | Python projects | Scientific stacks |
 
 The key practical difference is where the environment lives. With Conda, all environments are stored in a single central directory on your machine, separate from your project. With uv, the environment sits directly inside your project folder in a folder called `.venv`. This makes it obvious what belongs to what, and it travels with your project.
-
-For this course, we use uv. If you come from a Conda background, the concepts are the same and the transition is straightforward.
-
-
-
-## Virtual Environments and .venv
-
-A **virtual environment** is an isolated copy of Python with its own installed packages, separate from the global Python on your system. When a virtual environment is active, any `python` or `pip` command you run uses that environment, not the system one.
 
 When you create a project with uv, it creates a `.venv` folder inside your project directory:
 
@@ -78,7 +68,8 @@ The Python executable inside `.venv/bin/python` is the one your project uses. Yo
 
 Because `.venv` is just a folder inside your project, you always know exactly where it is. If something goes wrong, you can delete it and recreate it in seconds with `uv sync`.
 
-> **Note:** `.venv` should be added to your `.gitignore`. You never commit the environment itself to Git, only the `pyproject.toml` that describes it. Anyone who clones your repo can recreate the exact environment by running `uv sync`.
+{: .note }
+ `.venv` should be added to your `.gitignore`. You never commit the environment itself to Git, only the `pyproject.toml` that describes it. Anyone who clones your repo can recreate the exact environment by running `uv sync`.
 
 ### Activating a virtual environment
 
@@ -114,9 +105,8 @@ To deactivate and return to the system Python:
 deactivate
 ```
 
-> **Tip:** Most code editors including VS Code detect `.venv` automatically and activate it for you in the integrated terminal. You may not need to activate manually when working inside the editor.
-
-
+{: .note }
+Most code editors including VS Code detect `.venv` automatically and activate it for you in the integrated terminal. You may not need to activate manually when working inside the editor.
 
 ## Core uv Commands
 
@@ -196,12 +186,6 @@ dependencies = [
     "requests>=2.28",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "ruff>=0.4",
-]
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -224,15 +208,13 @@ This keeps all project configuration in a single file rather than scattered acro
 
 **Pixi** is a newer package manager built on top of the Conda ecosystem. It uses a `pixi.toml` file (similar to `pyproject.toml`) and supports multiple languages and platforms from one configuration.
 
-Pixi is worth knowing about if you work in environments that mix Python with compiled software (like geospatial libraries, CUDA, or R) where Conda channels are the only reliable source of packages.
+- What Pixi does well: it handles complex mixed-language dependency stacks cleanly, it is faster than traditional Conda, and its lockfile approach (similar to uv) gives you reproducible environments.
 
-What Pixi does well: it handles complex mixed-language dependency stacks cleanly, it is faster than traditional Conda, and its lockfile approach (similar to uv) gives you reproducible environments.
-
-What Pixi cannot do: it does not integrate as seamlessly into the Python-only tooling ecosystem. Features like editable installs, Python packaging, and publishing to PyPI are less mature than in uv. If your project is purely Python, uv is simpler and better supported.
-
-For this course, we use uv. Pixi is mentioned here so you recognise it if you encounter it in the wild, particularly in scientific or research computing contexts.
+- What Pixi cannot do: it does not integrate as seamlessly into the Python-only tooling ecosystem. Features like editable installs, Python packaging, and publishing to PyPI are less mature than in uv. If your project is purely Python, uv is simpler and better supported.
 
 
+{: .note }
+[More about uv vs pixi](https://jacobtomlinson.dev/posts/2025/python-package-managers-uv-vs-pixi/)
 
 ## Exercise
 
@@ -241,7 +223,7 @@ In this exercise you will create a new project with uv, add a dependency, write 
 **Step 1: Install uv**
 
 ```bash
-pip install uv
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 Verify it is installed:

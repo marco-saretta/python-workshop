@@ -5,8 +5,6 @@ parent: Base Setup
 nav_order: 1
 ---
 
-
-
 # Table of Contents
 
 - [Git vs GitHub](#git-vs-github)
@@ -261,6 +259,7 @@ git status
 # 5. Commit
 git commit -m "Add login validation"
 ```
+
 {: .note }
 A good commit message guide can be found [here](https://github.com/joelparkerhenderson/git-commit-message)
 

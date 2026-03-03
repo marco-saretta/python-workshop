@@ -5,18 +5,9 @@ parent: Base Setup
 nav_order: 1
 ---
 
-# Git Recap
 
-Software development requires a safe way to track changes in code. **Version control** helps you answer:
 
-- Who changed the code?
-- When was it changed?
-- What was changed?
-- Can we revert to an earlier version?
-
-Git is the tool we use to manage version control. For a deeper explanation, see the [official Git documentation](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F).
-
-## Table of Contents
+# Table of Contents
 
 - [Git vs GitHub](#git-vs-github)
 - [Core Concepts](#core-concepts)
@@ -37,87 +28,78 @@ Git is the tool we use to manage version control. For a deeper explanation, see 
   - [checkout](#checkout)
 - [Exercise](#exercise)
 
+# Git Recap
 
+Version control tracks code changes safely, answering who, when, what changed, and how to revert. Git is the core tool; GitHub hosts repositories online.
+
+Software development requires a safe way to track changes in code. **Version control** helps you answer:
+
+- Who changed the code?
+- When was it changed?
+- What was changed?
+- Can we revert to an earlier version?
+
+Git is the tool we use to manage version control. For a deeper explanation, see the [official Git documentation](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F).
 
 ## Git vs GitHub
 
-It is important to understand the difference:
+Git runs locally as a version control system. GitHub provides online hosting, collaboration via pull requests, and project tools.
 
-- **Git** is a version control tool installed on your computer.
-- **GitHub** is a website that hosts Git repositories online.
+| Aspect     | Git                          | GitHub                          |
+|------------|------------------------------|---------------------------------|
+| Type       | Local tool                   | Web platform                    |
+| Key Use    | Track changes, commits       | Host repos, reviews, issues     |
+| Access     | Offline                      | Internet required               |
 
-In this course, we use Git locally (in the terminal) and GitHub to store and share code. You are expected to create a public GitHub repository and use Git to upload your work.
-
+In this workshop, use Git locally and GitHub for public repos.
 
 
 ## Core Concepts
 
-### What Does Git Track?
+### What Git Tracks
+Git monitors new, modified, deleted files, and full history—but only after explicit `add`. It ignores unstaged changes.
 
-Git tracks changes to files inside a project folder. Specifically, it tracks new files, modified files, deleted files, and the full history of all changes.
+### Repositories
+A repo is a tracked project folder with a hidden `.git` directory for history.
 
-{: .important }
-Git does NOT automatically track everything. Files must be explicitly added to Git before it starts watching them.
+- **Local**: On your machine.
+- **Remote**: Online (e.g., GitHub).
 
-### Repositories: Local and Remote
-
-A **repository** (or *repo*) is a project folder that Git tracks. It contains your project files and a hidden `.git` folder that stores the full version history.
-
-There are two types: a **local repository** on your computer, and a **remote repository** hosted online (e.g., on GitHub).
-
-**What is a remote and what is `origin`?**
-
-A *remote* is a named reference to a repository hosted somewhere else, typically GitHub. When you clone a repository, Git automatically creates a remote called **`origin`** that points back to the URL you cloned from.
-
+`origin` is the default remote name after cloning:
 ```bash
 git remote -v
-# origin  https://github.com/marco-saretta/python-workshop.git (fetch)
-# origin  https://github.com/marco-saretta/python-workshop.git (push)
+# origin https://github.com/user/repo.git (fetch/push)
 ```
-
-You can have multiple remotes. `origin` is just the conventional name for the primary one.
 
 ### Forks and Upstream
+Fork: Your copy of another's repo on GitHub.
 
-A **fork** is your personal copy of someone else's repository, hosted on your own GitHub account. Forks are useful when you want to contribute to a project you do not own.
+| Remote   | Points To              |
+|----------|------------------------|
+| `origin` | Your fork             |
+| `upstream` | Original repo       |
 
-When you fork and then clone, you typically have two remotes:
-
-| Remote | Points to |
-|--------|-----------|
-| `origin` | Your fork on GitHub |
-| `upstream` | The original repository you forked from |
-
-You set up `upstream` manually so you can pull in changes from the original project:
-
+Add upstream:
 ```bash
-git remote add upstream https://github.com/original-author/python-workshop.git
-git remote -v
-# origin    https://github.com/your-username/python-workshop.git (fetch)
-# upstream  https://github.com/original-author/python-workshop.git (fetch)
-```
-
-To sync your fork with the latest changes from the original:
-
-```bash
+git remote add upstream https://github.com/original/repo.git
 git fetch upstream
 git merge upstream/main
 ```
 
-### The Three Stages of Git
+### Git Stages
+Changes flow through:
 
-Git works in three main steps:
+![git_stagingmeme](figures/git_staging.png)
 
-```
-Working Directory  ->  Staging Area (Index)  ->  Commit (History)
-   (edit files)          (git add)                (git commit)
-```
+- **Working Directory**: Edit files.
+- **Staging Area**: Prep changes (`git add`).
+- **Local Repo**: Save snapshots (`git commit`).
+- **Remote Repo**: Share (`git push`).
 
-**Working Directory** is where you edit files freely. The **Staging Area** is where you prepare a set of changes before saving them. A **Commit** is a permanent snapshot of your staged changes, stored in history.
-
-This separation gives you control: you can edit many files but only commit a specific subset of them.
+This lets you commit subsets of edits.
 
 ![git_meme](figures/git.png)
+
 
 ## Git Main Commands
 
@@ -279,6 +261,8 @@ git status
 # 5. Commit
 git commit -m "Add login validation"
 ```
+{: .note }
+A good commit message guide can be found [here](https://github.com/joelparkerhenderson/git-commit-message)
 
 ### Push
 

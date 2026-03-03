@@ -7,22 +7,11 @@ nav_order: 2
 
 # Module 1 – Base Setup
 
-This module establishes the foundational tooling required for professional Python development.
+Welcome to the first module!
 
-{: .note }
-This is a note. It will render with a purple border and background.
-
-
-## Topics
-
-- [Git Recap](git-recap)
-- [uv Package Manager](uv)
-- [Configure VS Code](vscode)
-- [Typer CLI Apps](typer)
-- [Good Coding Practices & Linting](linting)
+Here we will go through the foundations that we will need for the next modules.
 
 ---
-
 
 **Back:** [Home](../)  
 **Next:** [Python Templates](../m2_python_templates/)

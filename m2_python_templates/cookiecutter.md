@@ -16,16 +16,27 @@ When you start new Python projects often, setting up the same structure each tim
 Install it with:
 
 ```bash
-pip install cookiecutter
+uvx cookiecutter
 ```
+
+Shown below is the default code structure of cookiecutter for data science projects.
+
+![image](figures/cookie.png)
 
 ## Using a Template
 
 Run Cookiecutter with a public template, such as the official Python package template:
 
 ```bash
-cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage.git
+uvx cookiecutter <url-to-template>
 ```
+
+We will use this template:
+
+```bash
+uvx cookiecutter https://github.com/SkafteNicki/mlops_template
+```
+
 
 Then answer the prompts (e.g., project name, author, license). Cookiecutter will generate a new directory with everything preconfigured:
 ```
